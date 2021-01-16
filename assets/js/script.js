@@ -71,6 +71,14 @@ var auditTask = function(taskEl) {
   else if (Math.abs(moment().diff(time, "days")) <= 2) {
     $(taskEl).addClass("list-group-item-warning");
   }
+  // setting the setIntercal function to check for due dates every 5 sec
+  setInterval(function() {
+    $(".card .list-item-group").each(function(index, el) {
+      auditTask(el);
+    });
+    // 1,000 mili sec. by 60 to convert it to 1 min then multiply by 30 to get 30 min timer.
+  }, (1000 * 60) *30);
+// SetInvertal func end
 };
 
 // enable draggable/sortable feature on list-group elements
@@ -288,3 +296,4 @@ $("#remove-tasks").on("click", function() {
 
 // load tasks for the first time
 loadTasks();
+
